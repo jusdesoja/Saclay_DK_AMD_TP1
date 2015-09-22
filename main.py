@@ -58,8 +58,14 @@ class GUInterface():
 			for entryElement in self.EntryDict.keys():
 				if self.EntryDict[entryElement].get() != '':
 					print self.EntryDict[entryElement].get()
-					newItem.addAttr(entryElement, self.EntryDict[entryElement].get())
+					newItem.addAttr(entryElement.lower(), self.EntryDict[entryElement].get())
+			if self.MiscAttrEntry.get() != '':
+				newItem.addAttr(self.MiscAttrEntry.get().lower(), self.MiscValueEntry.get())
+				if 'description' == self.MiscAttrEntry.get().lower():
+					self.Redis.setAddAllDescriptionKeywords(newItem.tokenizeDescription(),newItem._attributes['name'])
 		self.Redis.hashAddItem(newItem)
+		
+			 
 	
 if __name__ == '__main__':
 	try:

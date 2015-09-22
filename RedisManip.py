@@ -25,6 +25,16 @@ class Redis:
 		except:
 			print 'No such name'
 			return False
+	
+	def setAddOneDescriptionKeyword(self,keyword, productName):
+		self.redisServer.sadd(keyword, productName)
+	
+	def setAddAllDescriptionKeywords(self, keywords,productName):
+		#print keywords
+		for keyword in keywords:
+			print keyword
+			self.setAddOneDescriptionKeyword(keyword, productName)
+			
 '''
 r = Redis()
 ITEM = Item('bike1', 75)

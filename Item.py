@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+def unique_list(l):
+    ulist = []
+    [ulist.append(x.lower()) for x in l.split() if x not in ulist]
+    return ulist
 class Item():
 	"""
 	Item class has methodes allowing adding an attribute and modifying an attribute
@@ -22,5 +26,9 @@ class Item():
 			return False
 		else:
 			self._attributes[attrName] = attrValue	
-			print 'Trues'
+			print 'True'
 			return True
+	def tokenizeDescription(self):
+		if 'description' in self._attributes.keys():
+			return unique_list(self._attributes['description'])
+		
